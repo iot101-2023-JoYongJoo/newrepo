@@ -14,26 +14,25 @@ void setup()
 {
   Serial.begin(115200);
   pinMode(LED, OUTPUT);
-}
 
-void loop() 
-{
   display.init();
   display.flipScreenVertically();
   display.setFont(ArialMT_Plain_16);
   display.display();
+}
 
+void loop() 
+{
   val = analogRead(0);
   Serial.println(val);
 
   avg = val*alpha + (1 - alpha)*pre_avg;
   pre_avg = avg;
   itoa(val, str_val, 10);
-
   snprintf(str_avg, sizeof(str_avg), "%.3f", avg);
 
   display.setColor(BLACK);
-  display.fillRect(80, 11, 100, 33);
+  display.fillRect(0, 0, 128, 32);
   display.setColor(WHITE);
   display.display();
 
